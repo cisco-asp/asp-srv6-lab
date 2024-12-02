@@ -51,17 +51,17 @@ Flex: true
 Flex_Algos:
   - name: 128
     descr: BLUE
-    affinity: exclude-any
-    affinity_color: GREEN
+    # affinity: exclude-any
+    # affinity_color: GREEN
   - name: 129
     descr: RED
-    affinity: exclude-any
-    affinity_color: GREEN
+    # affinity: exclude-any
+    # affinity_color: GREEN
   - name: 130
     descr: DELAY
     metric: delay
-    affinity: exclude-any
-    affinity_color: GREEN
+    # affinity: exclude-any
+    # affinity_color: GREEN
 
 Flex_Affinities:
   - name: GREEN
@@ -80,7 +80,7 @@ macsec_key_algo: aes-128-cmac
 macsec_cipher_suite: GCM-AES-128
 
 # Enable VRF-Lite configuration
-vrf_lite: false
+vrf_lite: true
 
 # Enable ipv4
 ipv4: false
@@ -194,18 +194,15 @@ interconnect_range: 10
 srv6_locators:
   - name: ASP_LAB
     prefix: fcbb:bb00
-  - name: ASP_Blue_Plane
+  - name: ASP_BLUE_Plane
     prefix: fcbb:bb01
     algo: 128
-  - name: ASP_Green_Plane
+  - name: ASP_RED_Plane
     prefix: fcbb:bb02
     algo: 129
-  - name: ASP_Avoid_Red
+  - name: ASP_LowLatency
     prefix: fcbb:bb03
     algo: 130
-  - name: ASP_LowLatency
-    prefix: fcbb:bb04
-    algo: 131
 
 # Test veriables
 test_ping: ["1.1.1.51","1.1.1.52"]

@@ -13,10 +13,22 @@ router bgp {{asn}}
  bgp graceful-restart
  bfd minimum-interval 6500
  bfd multiplier 7
+{% if srv6 %}
+ segment-routing srv6
+{% endif %}
+ address-family ipv4 unicast
+{% if srv6 %}
+   segment-routing srv6
+    locator ASP_LAB
+    alloc mode per-vrf
+  !
+{% endif %}
  !
+{% if ipv4 %}
  address-family ipv4 mvpn
   nexthop trigger-delay critical 10
  !
+{% endif %}
  address-family vpnv4 unicast
   nexthop trigger-delay critical 10
   additional-paths receive
@@ -40,6 +52,12 @@ router bgp {{asn}}
   bfd fast-detect
   update-source Loopback0
   !
+  address-family ipv4 unicast
+   route-reflector-client
+{% if srv6 %}
+   encapsulation-type srv6
+{% endif %}
+  !
   address-family vpnv4 unicast
    route-reflector-client
   !
@@ -49,17 +67,21 @@ router bgp {{asn}}
   address-family l2vpn evpn
    route-reflector-client
   !
+{% if ipv4 %}
   address-family ipv4 mvpn
    route-reflector-client
   !
+{% endif %}
  neighbor-group LEAF-RRC
   remote-as {{asn}}
   bfd fast-detect
   update-source Loopback0
   !
+{% if ipv4 %}
   address-family ipv4 mvpn
    route-reflector-client
   !
+{% endif %}
   address-family vpnv4 unicast
    route-reflector-client
   !

@@ -20,15 +20,26 @@ router bgp {{asn}}
  bfd minimum-interval 6500
  bfd multiplier 7
 {% endif %}
+{% if srv6 %}
+ segment-routing srv6
+{% endif %}
  !
  address-family ipv4 unicast
+{% if srv6 %}
+   segment-routing srv6
+    locator ASP_LAB
+    alloc mode per-vrf
+  !
+{% endif %}
  !
  address-family ipv6 unicast
  !
+{% if ipv4 %}
  address-family ipv4 mvpn
   additional-paths receive
   additional-paths send
  !
+{% endif %}
  address-family vpnv4 unicast
   additional-paths receive
   additional-paths send
@@ -74,8 +85,13 @@ router bgp {{asn}}
   update-source Loopback0
   !
   address-family ipv4 unicast
+{% if srv6 %}
+   encapsulation-type srv6
+{% endif %}
   !
+{% if ipv4 %}
   address-family ipv4 mvpn
+{% endif %}
   !
   address-family vpnv4 unicast
    soft-reconfiguration inbound
@@ -88,6 +104,7 @@ router bgp {{asn}}
   !
  !
 !
+{% if bgp_rrc %}
 {% for host in route_reflectors %}
 {% if ipv4 %}
   neighbor {{ host.ip }}
@@ -100,6 +117,7 @@ router bgp {{asn}}
   !
 {% endif %}
 {% endfor %}
+{% endif %}
   !
 !
 {% if vrf_lite %}

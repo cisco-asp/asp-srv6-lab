@@ -21,6 +21,7 @@
   - BGP
   - MDT
   - SR-MPLS
+  - SRv6
   - SR-TE
   - SR-PM
   - PCE
@@ -34,6 +35,7 @@
   connection: local
 
   roles:
+  - IGP
   - BGP
   - SERVICES
 
@@ -48,6 +50,7 @@
   - LDP
   - MDT
   - SR-MPLS
+  - SRv6
   - SR-PM
   - MPLS_TE
   - PCE
