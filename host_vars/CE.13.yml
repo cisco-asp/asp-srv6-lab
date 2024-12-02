@@ -11,6 +11,8 @@ bgp_rrc: false
 bgp_rr: false
 netflow: false
 xrd: true
+ipv4: true
+
 
 optics:
   - {enable: false}
