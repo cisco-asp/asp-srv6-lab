@@ -41,15 +41,35 @@ router bgp {{asn}}
  !
 {% endif %}
  address-family vpnv4 unicast
+{% if srv6 %}
+  vrf all
+   segment-routing srv6
+    alloc mode per-vrf
+{% endif %}
   additional-paths receive
   additional-paths send
   additional-paths selection route-policy BGP-PIC-EDGE-MULTIPATH
+{% if srv6 %}
+   segment-routing srv6
+    locator ASP_LAB
+  !
+{% endif %}
   !
  !
  address-family vpnv6 unicast
+{% if srv6 %}
+  vrf all
+   segment-routing srv6
+    alloc mode per-vrf
+{% endif %}
   additional-paths receive
   additional-paths send
   additional-paths selection route-policy BGP-PIC-EDGE-MULTIPATH
+{% if srv6 %}
+   segment-routing srv6
+    locator ASP_LAB
+  !
+{% endif %}
  !
  address-family ipv4 rt-filter
  !
@@ -94,12 +114,21 @@ router bgp {{asn}}
 {% endif %}
   !
   address-family vpnv4 unicast
+{% if srv6 %}
+   encapsulation-type srv6
+{% endif %}
    soft-reconfiguration inbound
   !
   address-family vpnv6 unicast
+{% if srv6 %}
+   encapsulation-type srv6
+{% endif %}
    soft-reconfiguration inbound
   !
   address-family l2vpn evpn
+{% if srv6 %}
+   encapsulation-type srv6
+{% endif %}
    route-policy CNC-rr-parent-policy in
   !
  !
