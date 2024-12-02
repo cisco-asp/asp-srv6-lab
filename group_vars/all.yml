@@ -83,7 +83,7 @@ macsec_cipher_suite: GCM-AES-128
 vrf_lite: false
 
 # Enable ipv4
-ipv4: true
+ipv4: false
 
 #Enable client interfaces ipv4
 client_ipv4: true
@@ -101,10 +101,10 @@ enable_core_qos: false
 lfa: true
 
 # enable SR-MPLS
-sr: true
+sr: false
 
 # Enable SRv6 uSID
-srv6: false
+srv6: true
 
 # Enable SR Performance Monitoring
 sr_pm: true
