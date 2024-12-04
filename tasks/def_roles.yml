@@ -22,7 +22,7 @@
   - MDT
   - SR-MPLS
   - SRv6
-  - SR-TE
+#  - SR-TE
   - SR-PM
   - PCE
   - QOS

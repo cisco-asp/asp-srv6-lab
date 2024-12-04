@@ -117,13 +117,13 @@ router bgp {{asn}}
 {% if srv6 %}
    encapsulation-type srv6
 {% endif %}
-   soft-reconfiguration inbound
+   soft-reconfiguration inbound always
   !
   address-family vpnv6 unicast
 {% if srv6 %}
    encapsulation-type srv6
 {% endif %}
-   soft-reconfiguration inbound
+   soft-reconfiguration inbound always
   !
   address-family l2vpn evpn
 {% if srv6 %}

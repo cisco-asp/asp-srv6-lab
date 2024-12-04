@@ -60,12 +60,15 @@ router bgp {{asn}}
   !
   address-family vpnv4 unicast
    route-reflector-client
+   soft-reconfiguration inbound always
   !
   address-family vpnv6 unicast
    route-reflector-client
+   soft-reconfiguration inbound always
   !
   address-family l2vpn evpn
    route-reflector-client
+   soft-reconfiguration inbound always
   !
 {% if ipv4 %}
   address-family ipv4 mvpn
@@ -84,12 +87,15 @@ router bgp {{asn}}
 {% endif %}
   address-family vpnv4 unicast
    route-reflector-client
+   soft-reconfiguration inbound always
   !
   address-family vpnv6 unicast
    route-reflector-client
+   soft-reconfiguration inbound always
   !
   address-family l2vpn evpn
    route-reflector-client
+   soft-reconfiguration inbound always
   !
  !
 {% for host in route_reflector_clients %}

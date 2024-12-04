@@ -24,17 +24,6 @@ segment-routing
   interface {{ interface.name }}
    metric {{ interface.te_metric }}
 {% endfor %}
-  on-demand color 128
-   dynamic
-    metric
-     type igp
-    !
-   !
-   constraints
-    segments
-     sid-algorithm 128
-    !
-   !
   !
 {% for policy in sr_policy.manual if policy is defined %}
   policy {{policy.name}}

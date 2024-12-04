@@ -20,8 +20,10 @@ router bgp {{ asn }}
    maximum-paths ebgp 2
 {% if srv6 %}
    segment-routing srv6
-    alloc mode per-vrf 
-   !
+{% if vrf.srv6_locator is defined %}
+    locator {{ vrf.srv6_locator }}
+{% endif %}
+    alloc mode per-vrf
 {% endif %} 
    redistribute connected
   !
