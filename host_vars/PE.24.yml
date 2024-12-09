@@ -68,13 +68,13 @@ route_reflectors:
 
 sr_policy:
   manual:
-  #   - { name: TEST_SR_POLICY, color: 100, endpoint: 1.1.1.22, metric_type: igp, pce: false, algo: 0 }
-  #   - { name: POLICY_RED_PLANE, color: 106, endpoint: 1.1.1.22, metric_type: igp, pce: false, algo: 129 }
+    - { name: TEST_SR_POLICY, color: 100, endpoint: 1.1.1.22, metric_type: igp, pce: false, algo: 0 }
+    - { name: POLICY_RED_PLANE, color: 106, endpoint: 1.1.1.22, metric_type: igp, pce: false, algo: 129 }
 
   odn:
-  #   - { color: 128, metric_type: igp, pce: false, algo: 128 }
-  #   - { color: 129, metric_type: igp, pce: false, algo: 129 }
-  #   - { color: 130, metric_type: latency, pce: false, algo: 130 }
+    - { color: 128, metric_type: igp, pce: false, algo: 128 }
+    - { color: 129, metric_type: igp, pce: false, algo: 129 }
+    - { color: 130, metric_type: latency, pce: false, algo: 130 }
 
 multicast:
   interfaces:
@@ -110,7 +110,7 @@ services:
     - name: BLUE
       rd: auto
       vpn_id: 128
-      srv6_locator: ASP_BLUE_Plane
+      algo_map: ALGO-BLUE 
       interfaces: 
         - { name: Loopback128 }
         - { name: GigabitEthernet0/0/0/3.101}
@@ -122,7 +122,7 @@ services:
     - name: RED
       rd: auto
       vpn_id: 129
-      # srv6_locator: ASP_LowLatency
+      algo_map: ALGO-RED 
       interfaces: 
         - { name: Loopback129 }
         - { name: GigabitEthernet0/0/0/3.102}
