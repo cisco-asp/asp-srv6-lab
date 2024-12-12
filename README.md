@@ -1,10 +1,16 @@
 # Features 
 
+This project has been modified from it's original form and is meant to be run in dcloud on ContainerLabs hosts. 
+Authors: Marty Fierbaugh (mfierbau@cisco.com), Chris Olson (christoo@cisco.com)
+
 Features in this playbook:
- - Segment Routing using ISIS or OSPF
+ - Segment Routing v6 uSID using ISIS
  - Transport Independant Loop Free Alternate (TI-LFA)
  - Flexable Algorithm
  - Core [QOS](Qos.md)
+ - Model-Driven Telemetry
+ - Segment Routing Performance Measurement (SR-PM)
+ - BGP with PIC Edge/Core
 
 # Usage
 
@@ -21,8 +27,6 @@ Start by updating the host field to mach your enviroment.
 
 # Run playbooks directly
 
-
-
 To run the playbook without committing changes:
 
     ansible-playbook -i hosts.yml lab_master_playbook.yml -e "commit_changes=0"
@@ -30,6 +34,12 @@ To run the playbook without committing changes:
 To run the playbook committing the changes:
 
     ansible-playbook -i hosts.yml clab_master_playbook.yml -e "commit_changes=1"
+
+The following script just simply execute the second example and commits changes
+
+./config_lab
+
+
 
 
 # Start T-REX 
