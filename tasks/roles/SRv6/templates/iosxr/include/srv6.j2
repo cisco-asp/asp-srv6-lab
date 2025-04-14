@@ -1,3 +1,30 @@
+segment-routing
+ srv6
+  encapsulation
+{% for locator in srv6_locators %}
+{% if locator.algo is not defined %}
+   source-address {{ locator.prefix }}:{{ '%04d' % id }}::1
+{% endif %}
+{% endfor %}
+  !
+  locators
+{% for locator in srv6_locators %}
+{% if locator.algo is not defined or locator.algo in Flex_Algo_Membership %}
+{% if locator.algo is not defined %}
+   locator {{ locator.name }}
+    micro-segment behavior unode psp-usd
+    prefix {{ locator.prefix }}:{{ '%04d' % id }}::/48
+    !
+{% else %}
+   locator {{ locator.name }}
+    micro-segment behavior unode psp-usd
+    prefix {{ locator.prefix }}:{{ '%04d' % id }}::/48
+    algorithm {{ locator.algo }}
+    !
+{% endif %}
+{% endif %}
+{% endfor %}
+!
 {% if igp == 'isis' %}
 {% for isis in igp_instances %}
 router isis {{ isis.name }}
@@ -22,6 +49,8 @@ router isis {{ isis.name }}
 {% endif %}
  address-family ipv6 unicast
   metric-style wide
+  advertise link attributes
+  router-id Loopback0  
   microloop avoidance segment-routing
   microloop avoidance rib-update-delay 2000
   segment-routing srv6
@@ -38,23 +67,6 @@ router isis {{ isis.name }}
    fast-reroute per-prefix ti-lfa level 2
    fast-reroute per-prefix tiebreaker node-protecting index 100
 {% endfor %} 
-{% endif %}
-{% endfor %}
-segment-routing
- srv6
-  locators
-{% for locator in srv6_locators %}
-{% if locator.algo is not defined or locator.algo in Flex_Algo_Membership %}
-{% if locator.algo is not defined %}
-   locator {{ locator.name }}
-    micro-segment behavior unode psp-usd
-    prefix {{ locator.prefix }}:{{ '%0x' % id }}::/48
-{% else %}
-   locator {{ locator.name }}
-    micro-segment behavior unode psp-usd
-    prefix {{ locator.prefix }}:{{ '%0x' % id }}::/48
-    algorithm {{ locator.algo }}
-{% endif %}
 {% endif %}
 {% endfor %}
 {% endif %}

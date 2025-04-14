@@ -80,6 +80,10 @@ router bgp {{asn}}
   bfd fast-detect
   update-source Loopback0
   !
+  address-family ipv4 unicast
+   route-reflector-client
+   soft-reconfiguration inbound always
+  !
 {% if ipv4 %}
   address-family ipv4 mvpn
    route-reflector-client

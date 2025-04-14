@@ -2,6 +2,10 @@ interface Loopback0
 {% if ipv4 %}
  ipv4 address {{ loopbackPrefix }}1.{{ id }}/32
 {% endif %}
-{% if ipv6 %}
+{% if srv6 %}
+{% for locator in srv6_locators %}
+ ipv6 address {{ locator.prefix }}:{{ '%04d' % id }}::1/128
+{% endfor %}
+{% elif ipv6 %}
  ipv6 address {{ id }}:{{ id }}:{{ id }}::{{ id }}/128
 {% endif %}

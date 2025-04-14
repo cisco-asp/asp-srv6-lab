@@ -68,7 +68,7 @@ Flex_Affinities:
     BitPos: 0
 
 # Evaluate if unnumbered interface option should be considered in dataplane / network_interfaces hostvar
-unnumbered_interfaces: false
+unnumbered_interfaces: true
 
 # Authenticaion Key String
 key: cisco
@@ -120,6 +120,9 @@ rp_address: 10.200.200.1
 
 #Prefer SR
 sr_prefer: true
+
+# Enable mvpn
+mvpn: false
 
 # Enable MPLS Traffic Engineering
 mpls_te: false
@@ -178,7 +181,7 @@ bng_radius_auth_port: 1812
 bng_radius_acct_port: 1813
 
 # Access Domain unless defined by group
-AccDom: 100
+access_domain: 01
 
 # Prefix for Infrastructure Loopbacks unless defined by grou
 loopbackPrefix: 1.1.
