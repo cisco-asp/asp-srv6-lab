@@ -40,7 +40,7 @@ topology:
       mgmt-ipv4: 198.18.130.102
       labels:
         graph-posX: "985"
-        graph-posY: "185"
+        graph-posY: "175"
         graph-groupLabelPos: bottom-center
 
     CORE.103:
@@ -49,8 +49,8 @@ topology:
       startup-config: configs/base_config.cfg
       mgmt-ipv4: 198.18.130.103
       labels:
-        graph-posX: "785"
-        graph-posY: "375"
+        graph-posX: "775"
+        graph-posY: "385"
         graph-groupLabelPos: bottom-center
 
     CORE.104:
@@ -77,8 +77,8 @@ topology:
       startup-config: configs/xrd_config.cfg
       mgmt-ipv4: 198.18.130.52
       labels:
-        graph-posX: "925"
-        graph-posY: "135"
+        graph-posX: "935"
+        graph-posY: "125"
         graph-groupLabelPos: bottom-center
 
     PE.21:
@@ -96,7 +96,7 @@ topology:
       mgmt-ipv4: 198.18.130.22
       labels:
         graph-posX: "635"
-        graph-posY: "375"
+        graph-posY: "385"
         graph-groupLabelPos: bottom-center
 
     PE.23:
@@ -105,7 +105,7 @@ topology:
       mgmt-ipv4: 198.18.130.23
       labels:
         graph-posX: "1105"
-        graph-posY: "185"
+        graph-posY: "175"
         graph-groupLabelPos: bottom-center
 
     PE.24:
@@ -141,7 +141,7 @@ topology:
       mgmt-ipv4: 198.18.130.13
       labels:
         graph-posX: "1265"
-        graph-posY: "195"
+        graph-posY: "175"
         graph-groupLabelPos: bottom-center
 
     CE.14:
@@ -150,7 +150,7 @@ topology:
       mgmt-ipv4: 198.18.130.14
       labels:
         graph-posX: "1265"
-        graph-posY: "395"
+        graph-posY: "385"
         graph-groupLabelPos: bottom-center
 
     trex1:
@@ -179,8 +179,8 @@ topology:
       binds:
         - configs/trex2_cfg.yaml:/etc/trex_cfg.yaml
       labels:
-        graph-posX: "895"
-        graph-posY: "525"
+        graph-posX: "885"
+        graph-posY: "475"
         graph-groupLabelPos: bottom-center
 
   links:
