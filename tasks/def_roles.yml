@@ -16,18 +16,14 @@
 
   roles:
   - IGP
-  # - MACSEC
-  - LDP
   - BGP
   - MDT
-  - SR-MPLS
   - SRv6
-#  - SR-TE
   - SR-PM
+  - SR-TE
   - PCE
-  - QOS
+#  - QOS
   - SERVICES
-  # - MULTICAST
 
 - name: Configure Customer Edge
   hosts: CustomerEdge
@@ -46,15 +42,11 @@
 
   roles:
   - IGP
-  # - MACSEC
-  - LDP
   - MDT
-  - SR-MPLS
   - SRv6
   - SR-PM
-  - MPLS_TE
   - PCE
-  - QOS
+#  - QOS
 
 - name: Configure SRPCE and Route Reflectors
   hosts: VRR

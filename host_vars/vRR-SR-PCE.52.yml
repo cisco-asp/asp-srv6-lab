@@ -16,8 +16,8 @@ optics:
   - {enable: false}
 
 network_interfaces:
-  - {name: GigabitEthernet0/0/0/0, descr: "CORE.102", remote_id: 102, vlan: 0, unnumbered: false, igp_inst: ASP_LAB, color: RED, igp_metric: 2000, te_metric: 120, mtu: 8982}
-  - {name: GigabitEthernet0/0/0/1, descr: "CORE.104", remote_id: 104, vlan: 0, unnumbered: false, igp_inst: ASP_LAB, color: RED, igp_metric: 2000, te_metric: 120, mtu: 8982}
+  - {name: GigabitEthernet0/0/0/0, descr: "CORE.102", remote_id: 102, vlan: 0, unnumbered: true, igp_inst: ASP_LAB, color: RED, igp_metric: 2000, te_metric: 120, mtu: 8982}
+  - {name: GigabitEthernet0/0/0/1, descr: "CORE.104", remote_id: 104, vlan: 0, unnumbered: true, igp_inst: ASP_LAB, color: RED, igp_metric: 2000, te_metric: 120, mtu: 8982}
 
 
 Flex_Algo_Membership: {128, 129, 130}
@@ -36,24 +36,24 @@ static_routes:
 
 route_reflector_clients:
   - ip: 1.1.1.21
-    v6: 21:21:21::21
+    v6: fcbb:bb00:21::1
   - ip: 1.1.1.22
-    v6: 22:22:22::22
+    v6: fcbb:bb00:22::1
   - ip: 1.1.1.23
-    v6: 23:23:23::23
+    v6: fcbb:bb00:23::1
   - ip: 1.1.1.24
-    v6: 24:24:24::24
+    v6: fcbb:bb00:24::1
 
 route_reflector_peers:
   - ip: 1.1.1.51
-    v6: 51:51:51::51
+    v6: fcbb:bb00:51::1
 
 ebgp_peers:
   - { enable: false }
 
 pce_peers:
   - ip: 1.1.1.51
-    v6: 51:51:51::51
+    v6: fcbb:bb00:51::1
 
 
 pce_sibling: 198.18.130.51

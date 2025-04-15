@@ -16,9 +16,9 @@ optics:
   - {enable: false}
 
 network_interfaces:
-  - {name: GigabitEthernet0/0/0/0, descr: "ASP - CORE.101", remote_id: 101, vlan: 0, unnumbered: false, igp_inst: ASP_LAB, color: BLUE, igp_metric: 100, te_metric: 120, mtu: 8982}
-  - {name: GigabitEthernet0/0/0/1, descr: "ASP - CORE.103", remote_id: 103, vlan: 0, unnumbered: false, igp_inst: ASP_LAB, color: BLUE, igp_metric: 100, te_metric: 120, mtu: 8982}
-  - {name: GigabitEthernet0/0/0/2, descr: "ASP - PE.22", remote_id: 22, vlan: 0, unnumbered: false, igp_inst: ASP_LAB, color: BLUE, igp_metric: 100, te_metric: 120, mtu: 8982}  
+  - {name: GigabitEthernet0/0/0/0, descr: "ASP - CORE.101", remote_id: 101, vlan: 0, unnumbered: true, igp_inst: ASP_LAB, color: BLUE, igp_metric: 100, te_metric: 120, mtu: 8982}
+  - {name: GigabitEthernet0/0/0/1, descr: "ASP - CORE.103", remote_id: 103, vlan: 0, unnumbered: true, igp_inst: ASP_LAB, color: BLUE, igp_metric: 100, te_metric: 120, mtu: 8982}
+  - {name: GigabitEthernet0/0/0/2, descr: "ASP - PE.22", remote_id: 22, vlan: 0, unnumbered: true, igp_inst: ASP_LAB, color: BLUE, igp_metric: 100, te_metric: 120, mtu: 8982}  
 
 Flex_Algo_Membership: {128, 129, 130}
 
@@ -38,8 +38,8 @@ static_routes:
   - {enable: False}
 
 ebgp_peers:
-  - { enable: false }
-  # - { enable: true, ipv4: 10.61.100.2, remote_asn: 65166.1001, rp4_in: pass-all, rp4_out: pass-all }
+  - { enable: true, ipv4: 10.11.21.0, remote_asn: 65100, rp4_in: pass-all, rp4_out: pass-all }
+  - { enable: true, ipv4: 10.12.21.0, remote_asn: 65100, rp4_in: pass-all, rp4_out: pass-all }
 
 ibgp_peers:
   - { enable: false }
@@ -49,30 +49,30 @@ ibgp_peers:
 
 sr_pce:
   - ip: 1.1.1.51
-    v6: 51:51:51::51
+    v6: fcbb:bb00:51::1
     precedence: 1
   - ip: 1.1.1.52
-    v6: 52:52:52::52
+    v6: fcbb:bb00:52::1
     precedence: 2
 
 route_reflectors:
   - ip: 1.1.1.51
-    v6: 51:51:51::51
+    v6: fcbb:bb00:51::1
     precedence: 1
   - ip: 1.1.1.52
-    v6: 52:52:52::52
+    v6: fcbb:bb00:52::1
     precedence: 2
 
 
 sr_policy:
   manual:
-    - { name: TEST_SR_POLICY, color: 100, endpoint: 1.1.1.23, metric_type: igp, pce: false, algo: 0 }
-    - { name: POLICY_BLUE_PLANE, color: 105, endpoint: 1.1.1.23, metric_type: igp, pce: false, algo: 128 }
+    - { name: TEST_SR_POLICY, color: 100, endpoint: fcbb:bb00:23::1, locator: ASP_LAB, pce: true }
+    - { name: POLICY_BLUE_PLANE, color: 105, endpoint: fcbb:bb00:23::1, locator: ASP_BLUE_Plane, pce: true }
 
   odn:
-    - { color: 128, metric_type: igp, pce: false, algo: 128 }
-    - { color: 129, metric_type: igp, pce: false, algo: 129 }
-    - { color: 130, metric_type: latency, pce: false, algo: 130 }
+    # - { color: 128, metric_type: igp, pce: false, algo: 128 }
+    # - { color: 129, metric_type: igp, pce: false, algo: 129 }
+    # - { color: 130, metric_type: latency, pce: false, algo: 130 }
 
 multicast:
   interfaces:
@@ -89,12 +89,12 @@ services:
 #    - {name: HundredGigE0/0/1/4, descr: "EVPN VPWS P2P POLICY DC1", vlan: 0, rewrite: none }
 
   l3_interfaces:
-#  - {name: TenGigE0/0/0/0, descr: "Internet Traffic interface", vlan: 1111, ipv4: 11.11.11.1/24, ipv6: '11:11:11:0/127', mtu: 9192}
-    # - {name: Loopback10, descr: "ASP VIDEO ANYCAST RP INTERFACE", vlan: 0, ipv4: 10.200.200.1/32, ipv6: '2000::10:200:200:1/128'}
     - {name: Loopback128, descr: "ASP TEST BLUE VRF INTERFACE", vlan: 0, ipv4: 10.21.128.1/32, ipv6: '2000::10:21:128:1/128'}
     - {name: Loopback129, descr: "ASP TEST RED VRF INTERFACE", vlan: 0, ipv4: 10.21.129.1/32, ipv6: '2000::10:21:129:1/128'}
+    - {name: GigabitEthernet0/0/0/3, descr: "ASP - CE.11 GRT Interface", vlan: 100, ipv4: 10.11.21.1/31, ipv6: '2001::10:11:21:1/127'}
     - {name: GigabitEthernet0/0/0/3, descr: "ASP - CE.11 VRF BLUE", vlan: 101, ipv4: 10.11.21.1/31, ipv6: '2001::10:11:21:1/127'}
     - {name: GigabitEthernet0/0/0/3, descr: "ASP - CE.11 VRF RED", vlan: 102, ipv4: 10.11.21.1/31, ipv6: '2001::10:11:21:1/127'}
+    - {name: GigabitEthernet0/0/0/4, descr: "ASP - CE.12 GRT Interface", vlan: 100, ipv4: 10.12.21.1/31, ipv6: '2001::10:12:21:1/127'}
     - {name: GigabitEthernet0/0/0/4, descr: "ASP - CE.12 VRF BLUE", vlan: 101, ipv4: 10.12.21.1/31, ipv6: '2001::10:12:21:1/127'}
     - {name: GigabitEthernet0/0/0/4, descr: "ASP - CE.12 VRF RED", vlan: 102, ipv4: 10.12.21.1/31, ipv6: '2001::10:12:21:1/127'}
 
@@ -106,7 +106,7 @@ services:
     - name: BLUE
       rd: auto
       vpn_id: 128
-      algo_map: ALGO-BLUE 
+      srv6_locator: ASP_BLUE_Plane
       interfaces: 
         - { name: Loopback128 }
         - { name: GigabitEthernet0/0/0/3.101}
@@ -118,7 +118,7 @@ services:
     - name: RED
       rd: auto
       vpn_id: 129
-      algo_map: ALGO-RED 
+      srv6_locator: ASP_RED_Plane
       interfaces: 
         - { name: Loopback129 }
         - { name: GigabitEthernet0/0/0/3.102}

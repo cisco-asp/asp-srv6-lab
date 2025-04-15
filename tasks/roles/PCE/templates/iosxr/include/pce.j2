@@ -15,7 +15,9 @@ pce
  timers  
   reoptimization 600 
 {% if ipv6 and not ipv4 %}
- address ipv6 100:100:100::{{ id }}
+{% for locator in srv6_locators if locator.algo is not defined %}
+   address ipv6 {{ locator.prefix }}:{{ '%04d' % id }}::1
+{% endfor %}
 {% endif %}
  api
   user admin

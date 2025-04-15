@@ -1,29 +1,21 @@
-!
-evpn
 {% for service in services.evpn_vpws %}
- evi {{ service.evi }}
-  load-balancing
-   flow-label dynamic
+{% if srv6 %}
+evpn
+ !
+ evi {{service.evi}} segment-routing srv6
+  locator {{ service.srv6_locator }}
   !
  !
-{% endfor %}
+ segment-routing srv6
+ !
+{% endif %}
 !
 l2vpn
-{% for policy in sr_policy.manual %}
- pw-class {{ policy.name }}
-  encapsulation mpls
-   preferred-path sr-te policy srte_c_{{ policy.color }}_ep_{{ policy.endpoint }} fallback disable
-  !
- !
-{% endfor %}
-{% for service in services.evpn_vpws %}
  xconnect group {{service.name}}
   p2p {{service.name}}
    interface {{service.interface}}
-   neighbor evpn evi {{service.evi}} service 1
-{% if service.sr_policy is defined %}
-    pw-class {{service.sr_policy}}
-{% endif %}
+   neighbor evpn evi {{service.evi}} service 1 {% if srv6 %}segment-routing srv6{% endif %}
+
    !
  !
 {% endfor %}
