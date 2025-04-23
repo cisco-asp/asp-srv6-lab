@@ -1,14 +1,13 @@
 
 {% for interface in services.l2transport_interfaces %}
 interface {{ interface.name }}
-  mtu 9216
+  mtu 8982
   load-interval 30
   no shutdown
 !
 {% if interface.vlan != 0 %}
 interface {{ interface.name }}.{{ interface.vlan }} l2transport
   description *** {{ interface.descr }} ***
-  load-interval 30
 {% if interface.vlan != 0 %}
   encapsulation dot1q {{ interface.vlan }}
 {% endif %}
@@ -21,7 +20,7 @@ interface {{ interface.name }}.{{ interface.vlan }} l2transport
 {% elif interface.rewrite == 'push-2' %}
   rewrite ingress tag push dot1q {{ interface.svlan }} second-dot1q {{ interface.cvlan }} symmetric
 {% endif %}
- mtu 9216
+ mtu 8982
 {% else %}
  l2transport
   propagate remote-status

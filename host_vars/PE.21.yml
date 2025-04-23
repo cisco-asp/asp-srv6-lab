@@ -86,7 +86,7 @@ igmp:
 
 services:
   l2transport_interfaces:
-#    - {name: HundredGigE0/0/1/4, descr: "EVPN VPWS P2P POLICY DC1", vlan: 0, rewrite: none }
+    - {name: GigabitEthernet0/0/0/3, descr: "EVPN VPWS P2P POLICY DC1-DC2", vlan: 103, rewrite: pop-1 }
 
   l3_interfaces:
     - {name: Loopback128, descr: "ASP TEST BLUE VRF INTERFACE", vlan: 0, ipv4: 10.21.128.1/32, ipv6: '2000::10:21:128:1/128'}
@@ -100,7 +100,7 @@ services:
 
 
   evpn_vpws:
-#    - { name: BLUE_POLICY_DC1_POLICY_DC2, interface: HundredGigE0/0/1/4, evi: 105, sr_policy: POLICY_BLUE_PLANE }
+    - { name: GREEN_L2VPN_LL, interface: GigabitEthernet0/0/0/3.103, evi: 103, srv6_locator: ASP_LowLatency }
 
   l3vpn:
     - name: BLUE

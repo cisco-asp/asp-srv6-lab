@@ -87,6 +87,9 @@ igmp:
   interfaces:
 
 services:
+  l2transport_interfaces:
+    - {name: GigabitEthernet0/0/0/3, descr: "EVPN VPWS P2P POLICY DC2-DC1", vlan: 103, rewrite: pop-1 }
+
   l3_interfaces:
     - {name: Loopback128, descr: "ASP BLUE VRF INTERFACE", vlan: 0, ipv4: 10.23.128.1/32, ipv6: '2000::10:23:128:1/128'}
     - {name: Loopback129, descr: "ASP RED VRF INTERFACE", vlan: 0, ipv4: 10.23.129.1/32, ipv6: '2000::10:23:129:1/128'}
@@ -96,6 +99,9 @@ services:
     - {name: GigabitEthernet0/0/0/4, descr: "ASP - PE.23 GRT Interface", vlan: 100, ipv4: 10.14.23.1/31, ipv6: '2001::10:14:23:1/127'}
     - {name: GigabitEthernet0/0/0/4, descr: "ASP - PE.23 VRF BLUE", vlan: 101, ipv4: 10.14.23.1/31, ipv6: '2001::10:14:23:1/127'}
     - {name: GigabitEthernet0/0/0/4, descr: "ASP - PE.23 VRF RED", vlan: 102, ipv4: 10.14.23.1/31, ipv6: '2001::10:14:23:1/127'}
+
+  evpn_vpws:
+    - { name: GREEN_L2VPN_LL, interface: GigabitEthernet0/0/0/3.103, evi: 103, srv6_locator: ASP_LowLatency }
 
   l3vpn:
     - name: BLUE

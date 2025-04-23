@@ -62,6 +62,7 @@ services:
     - {name: GigabitEthernet0/0/0/0, descr: "ASP - PE.21 GRT Interface", vlan: 100, ipv4: 10.11.21.0/31, ipv6: '2001::10:11:21:0/127'}
     - {name: GigabitEthernet0/0/0/0, descr: "ASP - PE.21 VRF BLUE", vlan: 101, ipv4: 10.11.21.0/31, ipv6: '2001::10:11:21:0/127'}
     - {name: GigabitEthernet0/0/0/0, descr: "ASP - PE.21 VRF RED", vlan: 102, ipv4: 10.11.21.0/31, ipv6: '2001::10:11:21:0/127'}
+    - {name: GigabitEthernet0/0/0/0, descr: "ASP - PE.21 VRF GREEN", vlan: 103, ipv4: 10.11.13.0/31, ipv6: '2001::10:11:13:0/127'}
     - {name: GigabitEthernet0/0/0/1, descr: "ASP - PE.22 GRT Interface", vlan: 100, ipv4: 10.11.22.0/31, ipv6: '2001::10:11:22:0/127'}
     - {name: GigabitEthernet0/0/0/1, descr: "ASP - PE.22 VRF BLUE", vlan: 101, ipv4: 10.11.22.0/31, ipv6: '2001::10:11:22:0/127'}
     - {name: GigabitEthernet0/0/0/1, descr: "ASP - PE.22 VRF RED", vlan: 102, ipv4: 10.11.22.0/31, ipv6: '2001::10:11:22:0/127'}
@@ -94,3 +95,11 @@ services:
         - { enable: true, ipv4: 10.11.21.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
         - { enable: true, ipv4: 10.11.22.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
         - { enable: true, ipv4: 10.12.129.1, remote_asn: 65100, rp4_in: pass-all, rp4_out: pass-all }
+
+    - name: GREEN
+      vpn_id: 130
+      interfaces:
+        - { name: GigabitEthernet0/0/0/0.103 }
+        - { name: Loopback130 }
+      bgp_neighbors:
+        - { enable: true, ipv4: 10.11.13.1, remote_asn: 65200, rp4_in: pass-all, rp4_out: pass-all }

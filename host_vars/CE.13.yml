@@ -53,9 +53,11 @@ services:
   l3_interfaces:
     - {name: Loopback128, descr: "ASP TEST BLUE VRF INTERFACE", vlan: 0, ipv4: 10.13.128.1/32, ipv6: '2000::10:13:128:1/128'}
     - {name: Loopback129, descr: "ASP TEST RED VRF INTERFACE", vlan: 0, ipv4: 10.13.129.1/32, ipv6: '2000::10:13:129:1/128'}
+    - {name: Loopback130, descr: "ASP TEST GREEN VRF INTERFACE", vlan: 0, ipv4: 10.13.130.1/32, ipv6: '2000::10:13:130:1/128'}
     - {name: GigabitEthernet0/0/0/0, descr: "ASP - PE.23 GRT Interface", vlan: 100, ipv4: 10.13.23.0/31, ipv6: '2001::10:13:23:0/127'}
     - {name: GigabitEthernet0/0/0/0, descr: "ASP - PE.23 VRF BLUE", vlan: 101, ipv4: 10.13.23.0/31, ipv6: '2001::10:13:23:0/127'}
     - {name: GigabitEthernet0/0/0/0, descr: "ASP - PE.23 VRF RED", vlan: 102, ipv4: 10.13.23.0/31, ipv6: '2001::10:13:23:0/127'}
+    - {name: GigabitEthernet0/0/0/0, descr: "ASP - PE.23 VRF GREEN", vlan: 103, ipv4: 10.11.13.1/31, ipv6: '2001::10:11:13:1/127'}
     - {name: GigabitEthernet0/0/0/1, descr: "ASP - PE.24 GRT Interface", vlan: 100, ipv4: 10.13.24.0/31, ipv6: '2001::10:13:24:0/127'}
     - {name: GigabitEthernet0/0/0/1, descr: "ASP - PE.24 VRF BLUE", vlan: 101, ipv4: 10.13.24.0/31, ipv6: '2001::10:13:24:0/127'}
     - {name: GigabitEthernet0/0/0/1, descr: "ASP - PE.24 VRF RED", vlan: 102, ipv4: 10.13.24.0/31, ipv6: '2001::10:13:24:0/127'}
@@ -88,3 +90,11 @@ services:
         - { enable: true, ipv4: 10.13.23.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
         - { enable: true, ipv4: 10.13.24.1, remote_asn: 65000, rp4_in: pass-all, rp4_out: pass-all }
         - { enable: true, ipv4: 10.14.129.1, remote_asn: 65200, rp4_in: pass-all, rp4_out: pass-all }
+
+    - name: GREEN
+      vpn_id: 130
+      interfaces:
+        - { name: GigabitEthernet0/0/0/0.103 }
+        - { name: Loopback130 }
+      bgp_neighbors:
+        - { enable: true, ipv4: 10.11.13.0, remote_asn: 65100, rp4_in: pass-all, rp4_out: pass-all }
