@@ -12,6 +12,12 @@ Features in this playbook:
  - Segment Routing Performance Measurement (SR-PM)
  - BGP with PIC Edge/Core
 
+## Devices 
+- Cisco XRd running IOS-XR 25.2.1 (PE and CE)
+- Cisco 8212-48FH-M running IOS-XR 25.2.1 (CORE.101, CORE.102)
+- Cisco 8711-32FH-M running IOS-XR 25.2.1 (CORE.103, CORE.104)
+- Cisco T-Rex ver 3.06 (Trex-1, Trex-2)
+
 # Usage
 
 This project is a full CI/CD pipline for configuration management. All configuration changes should be made by logging an issue then merging the changes to the Development branch then Test branch.
