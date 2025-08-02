@@ -32,15 +32,21 @@ A collection of xrd (Containerized XR) and VXR (Cisco 8000 Series Emulators that
 
 1. Start the Containerlab topology 
     
-    ```clab deploy```
+```
+clab deploy
+```
 
 2. Once the topology is fully booted, deploy the ansible configuration via the shell script that passes the required variables to ansible_playbook.
 
-    ```./config_lab```
+```
+./config_lab
+```
 
 It can take 8-10 minutes for the VXR nodes to fully boot. Follow the container logs and make sure you see the message "Router up"
 
-    ```docker logs -f <container id>```
+```
+docker logs -f <container id>
+```
 
 WARNING - this is a full commit replace and will restore the Agile Services Networking configuration. 
 
@@ -53,14 +59,22 @@ To execute the full lab, please use the lab guide (currently PPTX format).
 
 The dcloud lab includes pre-built traffic generators based upon trex.
 
-## Start the interactive trex console which will make a local connection to the running interactive daemon
+### Start the interactive trex console which will make a local connection to the running interactive daemon
+```
 ./trex-console
+```
 
-## Start generating some traffic
+### Start generating some traffic
+```
 start -f stl/imix.py
+```
 
-## To interact with and view statistics for the current stream launch the text-based user interface (tui)
+### To interact with and view statistics for the current stream launch the text-based user interface (tui)
+```
 tui
+```
 
-## Attempt to increase per interface traffic rate to 200mbps (400mbps rx/tx total). Throughput achievable in the Docker environment is dependent primarily on single core\thread CPU performance.
+### Attempt to increase per interface traffic rate to 200mbps (400mbps rx/tx total). Throughput achievable in the Docker environment is dependent primarily on single core\thread CPU performance.
+```
 update -m 200mbps
+```
