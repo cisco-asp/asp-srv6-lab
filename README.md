@@ -59,22 +59,22 @@ To execute the full lab, please use the lab guide (currently PPTX format).
 
 The dcloud lab includes pre-built traffic generators based upon trex.
 
-### Start the interactive trex console which will make a local connection to the running interactive daemon
+1. Start the interactive trex console which will make a local connection to the running interactive daemon
 ```
 ./trex-console
 ```
 
-### Start generating some traffic
+ Start generating some traffic
 ```
 start -f stl/imix.py
 ```
 
-### To interact with and view statistics for the current stream launch the text-based user interface (tui)
+2. To interact with and view statistics for the current stream launch the text-based user interface (tui)
 ```
 tui
 ```
 
-### Attempt to increase per interface traffic rate to 200mbps (400mbps rx/tx total). Throughput achievable in the Docker environment is dependent primarily on single core\thread CPU performance.
+3. Attempt to increase per interface traffic rate to 200mbps (400mbps rx/tx total). Throughput achievable in the Docker environment is dependent primarily on single core\thread CPU performance.
 ```
 update -m 200mbps
 ```
