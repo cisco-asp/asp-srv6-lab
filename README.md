@@ -32,15 +32,15 @@ A collection of xrd (Containerized XR) and VXR (Cisco 8000 Series Emulators that
 
 1. Start the Containerlab topology 
     
-    clab deploy
+    ```clab deploy```
 
 2. Once the topology is fully booted, deploy the ansible configuration via the shell script that passes the required variables to ansible_playbook.
 
-    ./config_lab
+    ```./config_lab```
 
 It can take 8-10 minutes for the VXR nodes to fully boot. Follow the container logs and make sure you see the message "Router up"
 
-    docker logs -f <container id>
+    ```docker logs -f <container id>```
 
 WARNING - this is a full commit replace and will restore the Agile Services Networking configuration. 
 
