@@ -9,7 +9,7 @@ Authors: Marty Fierbaugh (mfierbau@cisco.com), Chris Olson (christoo@cisco.com)
 ![ASP SRv6 Lab on Cisco dCloud](https://github.com/cisco-asp/asp-srv6-lab/blob/main/images/example.png?raw=true)
 
 
-# Features 
+## Features 
 
 Features in the Ansible playbook:
  - Segment Routing v6 uSID using ISIS
@@ -28,7 +28,7 @@ A collection of xrd (Containerized XR) and VXR (Cisco 8000 Series Emulators that
 - Cisco 8711-32FH-M running IOS-XR 25.2.1 (CORE.103, CORE.104)
 - Cisco T-Rex ver 3.06 (Trex-1, Trex-2)
 
-# Usage
+## Usage
 
 1. Start the Containerlab topology 
     
@@ -55,7 +55,7 @@ WARNING - this is a full commit replace and will restore the Agile Services Netw
 To execute the full lab, please use the lab guide (currently PPTX format).
 
 
-# Start T-REX 
+## Start T-REX 
 
 The dcloud lab includes pre-built traffic generators based upon trex.
 
