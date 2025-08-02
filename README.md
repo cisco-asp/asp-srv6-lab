@@ -1,7 +1,11 @@
-# Features 
+# ASP Containerlab SRv6 Lab
+
+![ASP Containerlab on Cisco dCloud](images/example.png)
 
 This project has been modified from it's original form and is meant to be run in dcloud on ContainerLabs hosts. 
 Authors: Marty Fierbaugh (mfierbau@cisco.com), Chris Olson (christoo@cisco.com)
+
+# Features 
 
 Features in this playbook:
  - Segment Routing v6 uSID using ISIS
@@ -50,14 +54,14 @@ The following script just simply execute the second example and commits changes
 
 # Start T-REX 
 
-# Start the interactive trex console which will make a local connection to the running interactive daemon
+## Start the interactive trex console which will make a local connection to the running interactive daemon
 ./trex-console
 
-# Start generating some traffic
+## Start generating some traffic
 start -f stl/imix.py
 
-# To interact with and view statistics for the current stream launch the text-based user interface (tui)
+## To interact with and view statistics for the current stream launch the text-based user interface (tui)
 tui
 
-# Attempt to increase per interface traffic rate to 200mbps (400mbps rx/tx total). Throughput achievable in the Docker environment is dependent primarily on single core\thread CPU performance.
+## Attempt to increase per interface traffic rate to 200mbps (400mbps rx/tx total). Throughput achievable in the Docker environment is dependent primarily on single core\thread CPU performance.
 update -m 200mbps
