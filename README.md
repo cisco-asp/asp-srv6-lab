@@ -1,6 +1,5 @@
 # ASP Containerlab SRv6 Lab
 
-![](images/example.png)
 ![ASP SRv6 Lab on Cisco dCloud](https://github.com/cisco-asp/asp-srv6-lab/blob/main/images/example.png?raw=true)
 
 This project has been modified from it's original form and is meant to be run in dcloud on ContainerLabs hosts. 
